@@ -53,6 +53,7 @@ public class BinaryTree<ContentType> {
 	 */
 	public BinaryTree() {
 		//TODO 01a
+        node = null;
 	}
 
 	/**
@@ -66,6 +67,11 @@ public class BinaryTree<ContentType> {
 	 */
 	public BinaryTree(ContentType pContent) {
 		//TODO 01b
+        if(pContent!=null){
+            node = new BTNode<ContentType>(pContent);
+        }else{
+            node = null;
+        }
 	}
 
 	/**
@@ -85,6 +91,20 @@ public class BinaryTree<ContentType> {
 	 */
 	public BinaryTree(ContentType pContent, BinaryTree<ContentType> pLeftTree, BinaryTree<ContentType> pRightTree) {
 		//TODO 01c
+        if(pContent!=null){
+            node = new BTNode<ContentType>(pContent);
+            if(pLeftTree != null) {
+                node.left = pLeftTree;
+            }else{
+                this.node.left = new BinaryTree<ContentType>();
+            }
+            if(pRightTree!=null) {
+                node.right = pRightTree;
+            }else{
+                this.node.right = new BinaryTree<ContentType>();
+            }
+        }
+
 	}
 
 	/**
@@ -95,7 +115,7 @@ public class BinaryTree<ContentType> {
 	 */
 	public boolean isEmpty() {
 		//TODO 01d
-		return false;
+        return node == null;
 	}
 
 	/**
@@ -110,6 +130,15 @@ public class BinaryTree<ContentType> {
 	 */
 	public void setContent(ContentType pContent) {
 		//TODO 01e
+        if(pContent!= null){
+            if(isEmpty()){
+                node.content = pContent;
+                node.left = new BinaryTree<ContentType>();
+                node.right = new BinaryTree<ContentType>();
+            }else{
+                node.content = pContent;
+            }
+        }
 	}
 
 	/**
@@ -121,7 +150,11 @@ public class BinaryTree<ContentType> {
 	 */
 	public ContentType getContent() {
 		//TODO 01f
-		return null;
+        if(node == null) {
+            return null;
+        }else{
+            return node.content;
+        }
 	}
 
 	/**
@@ -134,6 +167,9 @@ public class BinaryTree<ContentType> {
 	 */
 	public void setLeftTree(BinaryTree<ContentType> pTree) {
 		//TODO 01g
+        if(node != null && pTree!= null){
+            node.left = pTree;
+        }
 	}
 
 	/**
@@ -146,6 +182,9 @@ public class BinaryTree<ContentType> {
 	 */
 	public void setRightTree(BinaryTree<ContentType> pTree) {
 		//TODO 01h
+        if(node != null && pTree!= null){
+            node.right = pTree;
+        }
 	}
 
 	/**
@@ -157,6 +196,9 @@ public class BinaryTree<ContentType> {
 	 */
 	public BinaryTree<ContentType> getLeftTree() {
 		//TODO 01i
+        if(node!= null){
+            return node.left;
+        }
 		return null;
 	}
 
@@ -169,6 +211,9 @@ public class BinaryTree<ContentType> {
 	 */
 	public BinaryTree<ContentType> getRightTree() {
 		//TODO 01j
+        if(node!= null){
+            return node.right;
+        }
 		return null;
 	}
 
